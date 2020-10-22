@@ -1,0 +1,66 @@
+﻿@using Blood_Sugars.Models
+@using System.Web;
+
+
+
+
+@model BloodSugar
+@{
+    ViewBag.Title = "Blood Sugar Tracker";
+}
+
+<h1>Blood Sugar Tracker</h1>
+<form asp-action="Index" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="row" >
+    <div class="col-3" >
+        <label>Select User:</label>
+        @Html.DropDownList("UserName",
+                     new SelectList(Enum.GetValues(typeof(BloodSugar.User))),"",
+                      new { @class = "form-control" })
+    </div>
+    <div class="col-3" >
+        <label>Select time test taken:</label>
+        @Html.DropDownList("BsMealEatin",
+                    new SelectList(Enum.GetValues(typeof(BloodSugar.BeforeAfter))),"",
+                    new { @class = "form-control" })
+    </div>
+    </div>
+    <div>
+        <label>Blood Sugar Entry:</label>
+        <input asp-for="BloodSugars" />
+    </div>
+    <div class="row">
+    <div class="col-3">
+        <label>Protein:</label>
+        <input asp-for="Protein" />
+     </div>
+     <div class="col-3" >
+           <label>Veggie:</label>
+        <input asp-for="Veggie">
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-3">
+        <label>Fruit:</label>
+        <input asp-for="Fruit">
+     </div>
+    <div class="col-3">    
+        <label>Drink:</label>
+        <input asp-for="Drink">
+    </div>
+        </div>
+    <div class="row"> 
+    <div class="col-3">
+        <label>Date:</label>
+        <input asp-for="Date">
+     </div>
+     <div class="col-3">
+   
+        <label>Time:</label>
+        <input asp-for="Time">
+    </div>
+    </div>
+    <button type="submit">Submit</button>
+    <a asp-action="Index">Clear</a>
+</form>
